@@ -1,4 +1,18 @@
-import { BOARD_H, BOARD_W, CELL, COLS, ROWS, type GameState } from '../game/state';
+import { BOARD_H, BOARD_W, CELL, type GameState } from '../game/state';
+
+const bgImg = new Image();
+let bgReady = false;
+bgImg.onload = () => { bgReady = true; };
+bgImg.src = 'assets/bg.jpg';
+
+function drawBackdrop(ctx: CanvasRenderingContext2D): void {
+  if (bgReady) {
+    ctx.drawImage(bgImg, 0, 0, BOARD_W, BOARD_H);
+  } else {
+    ctx.fillStyle = '#0a0a1f';
+    ctx.fillRect(0, 0, BOARD_W, BOARD_H);
+  }
+}
 
 function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number): void {
   ctx.beginPath();
@@ -11,22 +25,7 @@ function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: numbe
 }
 
 export function drawGrid(ctx: CanvasRenderingContext2D): void {
-  ctx.fillStyle = '#0a0a1f';
-  ctx.fillRect(0, 0, BOARD_W, BOARD_H);
-  ctx.strokeStyle = 'rgba(120,180,255,0.05)';
-  ctx.lineWidth = 1;
-  for (let x = 0; x <= COLS; x += 2) {
-    ctx.beginPath();
-    ctx.moveTo(x * CELL, 0);
-    ctx.lineTo(x * CELL, BOARD_H);
-    ctx.stroke();
-  }
-  for (let y = 0; y <= ROWS; y += 2) {
-    ctx.beginPath();
-    ctx.moveTo(0, y * CELL);
-    ctx.lineTo(BOARD_W, y * CELL);
-    ctx.stroke();
-  }
+  drawBackdrop(ctx);
 }
 
 function headFace(ctx: CanvasRenderingContext2D, cx: number, cy: number, dir: { x: number; y: number }, yum: boolean): void {
@@ -141,8 +140,7 @@ export function drawAvatarBadge(ctx: CanvasRenderingContext2D, avatar: HTMLImage
 }
 
 export function drawTitle(ctx: CanvasRenderingContext2D, pulseT: number): void {
-  ctx.fillStyle = '#0a0a1f';
-  ctx.fillRect(0, 0, BOARD_W, BOARD_H);
+  drawBackdrop(ctx);
   const cx = BOARD_W / 2;
 
   const segs = [[-1, 1], [0, 1], [1, 0], [1, -1]];
