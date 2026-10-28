@@ -1,6 +1,6 @@
 # WORMOJI
 
-![WORMOJI icon](assets/icon.png)
+<img src="assets/icon.png" alt="WORMOJI icon" width="96" />
 
 A neon bitmoji-headed snake, built as a Snapchat Web Lens.
 
