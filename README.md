@@ -4,6 +4,8 @@
 
 A neon bitmoji-headed snake, built as a Snapchat Web Lens.
 
+**Play it live on Snapchat:** https://www.snapchat.com/lens/bb83ff2a777f46ed80e4a9e344b03479
+
 ## Play
 
 Drag to steer — the snake follows your finger's direction continuously. Eat the glowing orbs
